@@ -1,19 +1,20 @@
 import React from "react";
+import "./ListView.css"
 
 const ListView = ({todoList, onComplete, onRemove}) => {
   return (
-    <div>
+    <div className="listview">
       <ol>
         {todoList.map((item, index) => {
           return (
-            <li key={item.key}>
+            <li key={item.key} className={item.isCompleted ? "completed" : ""}>
               <span>{item.value}</span>
               <button type="button" onClick={() => {
                 if(typeof onComplete === "function"){
                   onComplete(index)
                 }
               }}>완료</button>
-              <button type="button" onClick={() => {
+              <button className="remove" type="button" onClick={() => {
                 if(typeof onComplete === "function"){
                   onRemove(index)
                 }
