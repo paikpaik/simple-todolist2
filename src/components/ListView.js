@@ -1,18 +1,26 @@
-import React from 'react';
+import React from "react";
 
-const ListView = ({ todoList }) => {
+const ListView = ({todoList, onComplete, onRemove}) => {
   return (
     <div>
       <ol>
-        {todoList.map((item) => {
+        {todoList.map((item, index) => {
           return (
             <li key={item.key}>
               <span>{item.value}</span>
-              <button type="button">완료</button>
-              <button type="button">삭제</button>
+              <button type="button" onClick={() => {
+                if(typeof onComplete === "function"){
+                  onComplete(index)
+                }
+              }}>완료</button>
+              <button type="button" onClick={() => {
+                if(typeof onComplete === "function"){
+                  onRemove(index)
+                }
+              }}>삭제</button>
             </li>
-          )  
-        })}      
+          );
+        })}
       </ol>
     </div>
   )

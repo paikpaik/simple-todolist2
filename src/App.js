@@ -19,10 +19,30 @@ function App() {
       return newTodoList
     });
   }
+
+  const handleComplete = (index) => {
+    setTodoList((current) => {
+      const newList = [...current];
+      newList[index].isCompleted = true;
+      return newList;
+    })
+  }
+
+  const handleRemove = (index) => {
+    setTodoList((current) => {
+      const newList = [...current];
+      newList.splice(index, 1);
+      return newList;
+    })
+  }
+
   return (
     <div className="App">
-      <ListView todoList={todoList} />
-      <InsertForm onInsert={handleInsert} />
+        <ListView todoList={todoList} 
+          onComplete={handleComplete} 
+          onRemove={handleRemove}
+        />
+        <InsertForm onInsert={handleInsert} />
     </div>
   );
 }
